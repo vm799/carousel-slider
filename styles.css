@@ -31,7 +31,6 @@ h1{
 text-shadow: 0.25px 1px 10px rgb(223, 252, 76);
 font-size: 40px;
 font-weight:lighter;
-
 }
 
 .nextBtn:hover{
@@ -90,4 +89,16 @@ padding: 1em;
 .dot:hover{
     opacity: 0.9;
     background: rgb(32,32,32);
+}
+
+.slides {
+    width:800px;
+    height: 500px;
+    background: indianred;
+    margin: 10px;
+}
+
+img {
+    width:100%;
+    
 }
