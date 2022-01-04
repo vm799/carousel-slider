@@ -1,10 +1,12 @@
-const slides = document.querySelector(".slides")
-const dots = document.querySelector(".dotsContainer")
+const slides = document.getElementsByClassName("carousel")[1]
+let slidePosition = 0
+const totalSlides = slides.length
+const carousel = document.getElementsByClassName("carousel")
 
 const prev = document.querySelector(".prevBtn").addEventListener("click", showPrevImg)
 const next = document.querySelector(".nextBtn").addEventListener("click", showNextImg)
+let newSlides = []
 
-let imgNum = 0;
 
 
 const imgs = [
@@ -16,42 +18,55 @@ const imgs = [
 ]
 
 function renderImgs(){
-    imgs.map(image => {
-        console.log("im rnederdrin")
-        const imgSlide = document.createElement("img")
-        imgSlide.src = image.src
-        imgSlide.alt = image.alt
-        const imgDot = document.createElement("div")
-        imgDot.classList.add("dot")
-        slides.appendChild(imgSlide)
-        dots.appendChild(imgDot)
-        })
+ for (let i=0; i < imgs.length; i++){
+        let imageSlide = document.createElement("img")
+        imageSlide.classList.add("carousel-item")
+        slides.appendChild(imageSlide)
+        newSlides.push(imageSlide)
+        }
+       
+      
 }
+
+renderImgs()
   
 function hideAllSlides(){
-    
+for(let slide of newSlides){
+    slide.classList.remove("carousel-item-visible")
+    slide.classList.add("carousel-item-hidden")
+}
 }
 
 
 function showNextImg(){
-if (imgNum < imgs.length - 1){
-imgNum += 1
-} else if(imgNum === imgs.length){
-    imgNum = 0
+    console.log("boyaaa")
+    hideAllSlides()
+
+if (slidePosition === totalSlides - 1){
+slidePosition = 0
+} else {
+   slidePosition ++
 }
 
-renderImgs()  
+slides[slidePosition].classList.add("carousel-item-visible")
+renderImgs()
 }
+
 
 function showPrevImg(){
-    if (imgNum === 0){
-        imgNum = imgs.length - 1
-        } else {
-            imgNum -= 1
-        }
-        
-        renderImgs()   
+    console.log("boyaaakaaashaaa")
+    hideAllSlides()
+
+if (slidePosition === 0){
+slidePosition = totalSlides - 1
+} else {
+   slidePosition --
 }
+
+slides[slidePosition].classList.add("carousel-item-visible")
+renderImgs()
+}
+
 
 
 
